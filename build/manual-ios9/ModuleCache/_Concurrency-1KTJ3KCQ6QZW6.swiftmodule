@@ -1,0 +1,16 @@
+---
+path:            '/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/prebuilt-modules/27.0/_Concurrency.swiftmodule/arm64e-apple-ios.swiftmodule'
+dependencies:
+  - mtime:           1780677755000000000
+    path:            '/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/prebuilt-modules/27.0/_Concurrency.swiftmodule/arm64e-apple-ios.swiftmodule'
+    size:            770660
+  - mtime:           1779513603000000000
+    path:            'usr/lib/swift/Swift.swiftmodule/arm64e-apple-ios.swiftinterface'
+    size:            2357673
+    sdk_relative:    true
+  - mtime:           1779514100000000000
+    path:            'usr/lib/swift/_Concurrency.swiftmodule/arm64e-apple-ios.swiftinterface'
+    size:            294545
+    sdk_relative:    true
+version:         1
+...
