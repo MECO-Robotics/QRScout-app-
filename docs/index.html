@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -113,21 +113,21 @@
               <fieldset>
                 <legend>Where Collected Fuel <small>Select all that apply</small></legend>
                 <div class="choice-grid">
-                  <label><input type="checkbox" name="autoCollectLoc" value="1"><span>Outpost</span></label>
-                  <label><input type="checkbox" name="autoCollectLoc" value="2"><span>Depot</span></label>
-                  <label><input type="checkbox" name="autoCollectLoc" value="3"><span>Neutral Zone</span></label>
-                  <label><input type="checkbox" name="autoCollectLoc" value="4"><span>Neutral Zone — 2nd Pass</span></label>
-                  <label><input type="checkbox" name="autoCollectLoc" value="5"><span>Did Not Move</span></label>
-                  <label><input type="checkbox" name="autoCollectLoc" value="6"><span>Moved Without Collecting</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc[]" value="1"><span>Outpost</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc[]" value="2"><span>Depot</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc[]" value="3"><span>Neutral Zone</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc[]" value="4"><span>Neutral Zone — 2nd Pass</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc[]" value="5"><span>Did Not Move</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc[]" value="6"><span>Moved Without Collecting</span></label>
                 </div>
               </fieldset>
 
               <fieldset>
                 <legend>Other Auto Actions <small>Select all that apply</small></legend>
                 <div class="choice-grid">
-                  <label><input type="checkbox" name="autoAdditionAct" value="1"><span>Passed</span></label>
-                  <label><input type="checkbox" name="autoAdditionAct" value="2"><span>Bump</span></label>
-                  <label><input type="checkbox" name="autoAdditionAct" value="3"><span>Trench</span></label>
+                  <label><input type="checkbox" name="autoAdditionAct[]" value="1"><span>Passed</span></label>
+                  <label><input type="checkbox" name="autoAdditionAct[]" value="2"><span>Bump</span></label>
+                  <label><input type="checkbox" name="autoAdditionAct[]" value="3"><span>Trench</span></label>
                 </div>
               </fieldset>
 
@@ -169,8 +169,8 @@
               <fieldset>
                 <legend>Bump / Trench <small>Select all that apply</small></legend>
                 <div class="choice-grid">
-                  <label><input type="checkbox" name="teleBumpTrench" value="1"><span>Bump</span></label>
-                  <label><input type="checkbox" name="teleBumpTrench" value="2"><span>Trench</span></label>
+                  <label><input type="checkbox" name="teleBumpTrench[]" value="1"><span>Bump</span></label>
+                  <label><input type="checkbox" name="teleBumpTrench[]" value="2"><span>Trench</span></label>
                 </div>
               </fieldset>
 
@@ -185,8 +185,8 @@
               <fieldset>
                 <legend>Opposing Zone Actions <small>Select all that apply</small></legend>
                 <div class="choice-grid">
-                  <label><input type="checkbox" name="teleOpposingActs" value="1"><span>Collecting</span></label>
-                  <label><input type="checkbox" name="teleOpposingActs" value="2"><span>Defense</span></label>
+                  <label><input type="checkbox" name="teleOpposingActs[]" value="1"><span>Collecting</span></label>
+                  <label><input type="checkbox" name="teleOpposingActs[]" value="2"><span>Defense</span></label>
                 </div>
               </fieldset>
             </section>
@@ -244,7 +244,7 @@
               <fieldset>
                 <legend>Scoring Location <small>Select all that apply</small></legend>
                 <div class="choice-grid">
-                  <label><input type="checkbox" name="teleScoreLoc" value="1"><span>Outpost Trench</span></label><label><input type="checkbox" name="teleScoreLoc" value="2"><span>Outpost</span></label><label><input type="checkbox" name="teleScoreLoc" value="3"><span>Hub</span></label><label><input type="checkbox" name="teleScoreLoc" value="4"><span>Ladder</span></label><label><input type="checkbox" name="teleScoreLoc" value="5"><span>Depot</span></label><label><input type="checkbox" name="teleScoreLoc" value="6"><span>Depot Trench</span></label>
+                  <label><input type="checkbox" name="teleScoreLoc[]" value="1"><span>Outpost Trench</span></label><label><input type="checkbox" name="teleScoreLoc[]" value="2"><span>Outpost</span></label><label><input type="checkbox" name="teleScoreLoc[]" value="3"><span>Hub</span></label><label><input type="checkbox" name="teleScoreLoc[]" value="4"><span>Ladder</span></label><label><input type="checkbox" name="teleScoreLoc[]" value="5"><span>Depot</span></label><label><input type="checkbox" name="teleScoreLoc[]" value="6"><span>Depot Trench</span></label>
                 </div>
               </fieldset>
 
@@ -283,7 +283,7 @@
               <h3 id="output-title">QR Output</h3>
               <p class="payload-meta"><strong>29 spreadsheet fields</strong> • tab-separated for one-cell-per-value scanning</p>
               <div class="qr-panel">
-                <div id="qr-code" aria-label="Scouting QR code"></div>
+                <div id="qr-code" role="img" aria-label="Scouting QR code"></div>
               </div>
               <output id="payload" aria-live="polite"></output>
               <div class="output-actions">
@@ -291,6 +291,7 @@
                 <button type="button" id="copy-columns">Copy Column Names</button>
               </div>
             </section>
+            <button class="sr-only" type="submit">Submit scouting form</button>
           </form>
         </section>
       </div>
@@ -304,7 +305,7 @@
     <dialog id="commit-dialog">
       <h2>QR Code Ready</h2>
       <p>The scouting payload has been encoded.</p>
-      <form method="dialog"><button>OK</button></form>
+      <form method="dialog"><button type="submit">OK</button></form>
     </dialog>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
