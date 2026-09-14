@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0a172e">
+    <meta
+      name="description"
+      content="An interactive browser preview of the QRScout Legacy iPad scouting app for FRC Team 8324."
+    >
+    <title>QRScout Legacy — Interactive Preview</title>
+    <link rel="icon" href="assets/meco-8324.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="preview-header">
+      <div>
+        <p class="preview-kicker">QRScout Legacy</p>
+        <h1>Interactive iPad preview</h1>
+        <p>
+          A browser recreation of the native iOS 9 app, based directly on its
+          Objective-C interface and scouting contract.
+        </p>
+      </div>
+      <a
+        class="source-link"
+        href="https://github.com/MECO-Robotics/QRScout-app-"
+        rel="noreferrer"
+      >View repository <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <p class="preview-note">
+        <span aria-hidden="true"></span>
+        Browser preview — the installable legacy build remains a native iPad app.
+      </p>
+
+      <div class="device-frame">
+        <section class="app" aria-label="QRScout Legacy app preview">
+          <div class="status-bar" aria-hidden="true">
+            <span>iPad</span>
+            <span>9:41 AM</span>
+            <span class="status-icons">●●● 100% ▰</span>
+          </div>
+
+          <nav class="navigation-bar" aria-label="App controls">
+            <button class="nav-button" type="button" id="reset-button">Reset</button>
+            <strong>MECO 8324&nbsp; • &nbsp;QRSCOUT</strong>
+            <button class="nav-button nav-button-strong" type="button" id="commit-button">Commit</button>
+          </nav>
+
+          <form class="app-content" id="scouting-form">
+            <header class="hero-card">
+              <img src="assets/meco-8324.png" alt="MECO Robotics Team 8324 logo">
+              <div class="hero-copy">
+                <p>FRC TEAM 8324</p>
+                <h2>MECO ROBOTICS</h2>
+                <div class="hero-divider" aria-hidden="true"></div>
+                <span>2026 REBUILT&nbsp; • &nbsp;MATCH SCOUTING</span>
+              </div>
+            </header>
+
+            <section class="card" aria-labelledby="prematch-title">
+              <h3 id="prematch-title">Prematch</h3>
+              <div class="field-row">
+                <label>
+                  <span class="sr-only">Scout name</span>
+                  <input id="scout" name="scout" type="text" placeholder="Scout name" autocomplete="name">
+                </label>
+                <label>
+                  <span class="sr-only">Match</span>
+                  <input id="match" name="match" type="number" min="0" inputmode="numeric" placeholder="Match">
+                </label>
+                <label>
+                  <span class="sr-only">Team</span>
+                  <input id="team" name="team" type="number" min="0" inputmode="numeric" placeholder="Team">
+                </label>
+              </div>
+
+              <fieldset>
+                <legend>Alliance</legend>
+                <div class="segmented segmented-two">
+                  <label><input type="radio" name="alliance" value="Red" checked><span>Red</span></label>
+                  <label><input type="radio" name="alliance" value="Blue"><span>Blue</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Station</legend>
+                <div class="segmented segmented-three">
+                  <label><input type="radio" name="station" value="1" checked><span>1</span></label>
+                  <label><input type="radio" name="station" value="2"><span>2</span></label>
+                  <label><input type="radio" name="station" value="3"><span>3</span></label>
+                </div>
+              </fieldset>
+
+              <label>
+                <span class="sr-only">Robot notes</span>
+                <input id="robot-notes" name="robotNotes" type="text" placeholder="Robot notes" autocomplete="off">
+              </label>
+            </section>
+
+            <section class="card" aria-labelledby="auto-title">
+              <h3 id="auto-title">Autonomous (20 seconds)</h3>
+              <div class="counter-list">
+                <div class="counter" data-counter="autoFuelScored" data-max="99">
+                  <span>Auto Fuel Scored</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Auto Fuel Scored">−</button>
+                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Auto Fuel Scored">
+                  <button type="button" data-step="1" aria-label="Increase Auto Fuel Scored">+</button>
+                </div>
+                <div class="counter" data-counter="autoFuelMissed" data-max="99">
+                  <span>Auto Fuel Missed</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Auto Fuel Missed">−</button>
+                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Auto Fuel Missed">
+                  <button type="button" data-step="1" aria-label="Increase Auto Fuel Missed">+</button>
+                </div>
+                <div class="counter" data-counter="autoTowerLevel1" data-max="1">
+                  <span>Auto Tower Level 1</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Auto Tower Level 1">−</button>
+                  <input type="number" value="0" min="0" max="1" inputmode="numeric" aria-label="Auto Tower Level 1">
+                  <button type="button" data-step="1" aria-label="Increase Auto Tower Level 1">+</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="card" aria-labelledby="teleop-title">
+              <h3 id="teleop-title">Teleop (2:20)</h3>
+              <div class="counter-list">
+                <div class="counter" data-counter="teleopFuelScored" data-max="99">
+                  <span>Teleop Fuel Scored (Active Hub)</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Teleop Fuel Scored">−</button>
+                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Teleop Fuel Scored">
+                  <button type="button" data-step="1" aria-label="Increase Teleop Fuel Scored">+</button>
+                </div>
+                <div class="counter" data-counter="teleopFuelMissed" data-max="99">
+                  <span>Teleop Fuel Missed</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Teleop Fuel Missed">−</button>
+                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Teleop Fuel Missed">
+                  <button type="button" data-step="1" aria-label="Increase Teleop Fuel Missed">+</button>
+                </div>
+                <div class="counter" data-counter="teleopFuelInactive" data-max="99">
+                  <span>Teleop Fuel (Inactive Hub)</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Teleop Fuel Inactive Hub">−</button>
+                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Teleop Fuel Inactive Hub">
+                  <button type="button" data-step="1" aria-label="Increase Teleop Fuel Inactive Hub">+</button>
+                </div>
+                <div class="counter" data-counter="fouls" data-max="99">
+                  <span>Fouls</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Fouls">−</button>
+                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Fouls">
+                  <button type="button" data-step="1" aria-label="Increase Fouls">+</button>
+                </div>
+                <div class="counter" data-counter="defenseRating" data-max="5">
+                  <span>Defense Rating</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Defense Rating">−</button>
+                  <input type="number" value="0" min="0" max="5" inputmode="numeric" aria-label="Defense Rating">
+                  <button type="button" data-step="1" aria-label="Increase Defense Rating">+</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="card" aria-labelledby="endgame-title">
+              <h3 id="endgame-title">Endgame &amp; Notes</h3>
+              <fieldset>
+                <legend>Tower Level (endgame)</legend>
+                <div class="segmented segmented-four">
+                  <label><input type="radio" name="towerLevel" value="None" checked><span>None</span></label>
+                  <label><input type="radio" name="towerLevel" value="Level 1"><span>Level 1</span></label>
+                  <label><input type="radio" name="towerLevel" value="Level 2"><span>Level 2</span></label>
+                  <label><input type="radio" name="towerLevel" value="Level 3"><span>Level 3</span></label>
+                </div>
+              </fieldset>
+              <label>
+                <span class="sr-only">Comments</span>
+                <textarea id="comments" name="comments" aria-label="Comments" placeholder="Comments"></textarea>
+              </label>
+            </section>
+
+            <section class="card" aria-labelledby="output-title">
+              <h3 id="output-title">QR Output</h3>
+              <div class="qr-panel">
+                <div id="qr-code" aria-label="Scouting QR code"></div>
+              </div>
+              <output id="payload" aria-live="polite"></output>
+              <div class="output-actions">
+                <button type="button" id="copy-payload">Copy Payload</button>
+                <button type="button" id="copy-columns">Copy Column Names</button>
+              </div>
+            </section>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>Built as a visual preview of QRScout Legacy for FRC Team 8324.</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog id="commit-dialog">
+      <h2>QR Code Ready</h2>
+      <p>The scouting payload has been encoded.</p>
+      <form method="dialog"><button>OK</button></form>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
