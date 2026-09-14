@@ -63,122 +63,225 @@
             <section class="card" aria-labelledby="prematch-title">
               <h3 id="prematch-title">Prematch</h3>
               <div class="field-row">
-                <label>
-                  <span class="sr-only">Scout name</span>
-                  <input id="scout" name="scout" type="text" placeholder="Scout name" autocomplete="name">
+                <label class="field-label">
+                  <span>Scouter Initials</span>
+                  <input id="scouter" name="scouter" type="text" placeholder="Initials" autocomplete="name">
                 </label>
-                <label>
-                  <span class="sr-only">Match</span>
-                  <input id="match" name="match" type="number" min="0" inputmode="numeric" placeholder="Match">
+                <label class="field-label">
+                  <span>Match Number</span>
+                  <input id="match-number" name="matchNumber" type="number" min="0" inputmode="numeric" placeholder="Match">
                 </label>
-                <label>
-                  <span class="sr-only">Team</span>
-                  <input id="team" name="team" type="number" min="0" inputmode="numeric" placeholder="Team">
+                <label class="field-label">
+                  <span>Team Number</span>
+                  <input id="team-number" name="teamNumber" type="number" min="0" inputmode="numeric" placeholder="Team">
                 </label>
               </div>
 
               <fieldset>
-                <legend>Alliance</legend>
-                <div class="segmented segmented-two">
-                  <label><input type="radio" name="alliance" value="Red" checked><span>Red</span></label>
-                  <label><input type="radio" name="alliance" value="Blue"><span>Blue</span></label>
+                <legend>Starting Position</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="startPos" value="OT"><span>Outpost Trench</span></label>
+                  <label><input type="radio" name="startPos" value="OBFT"><span>Outpost Bump — Trench</span></label>
+                  <label><input type="radio" name="startPos" value="OBFH"><span>Outpost Bump — Hub</span></label>
+                  <label><input type="radio" name="startPos" value="H"><span>Hub</span></label>
+                  <label><input type="radio" name="startPos" value="DBFH"><span>Depot Bump — Hub</span></label>
+                  <label><input type="radio" name="startPos" value="DBFT"><span>Depot Bump — Trench</span></label>
+                  <label><input type="radio" name="startPos" value="DT"><span>Depot Trench</span></label>
                 </div>
               </fieldset>
 
               <fieldset>
-                <legend>Station</legend>
-                <div class="segmented segmented-three">
-                  <label><input type="radio" name="station" value="1" checked><span>1</span></label>
-                  <label><input type="radio" name="station" value="2"><span>2</span></label>
-                  <label><input type="radio" name="station" value="3"><span>3</span></label>
+                <legend>No Show</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="noShow" value="false" checked><span>No</span></label>
+                  <label><input type="radio" name="noShow" value="true"><span>Yes</span></label>
                 </div>
               </fieldset>
-
-              <label>
-                <span class="sr-only">Robot notes</span>
-                <input id="robot-notes" name="robotNotes" type="text" placeholder="Robot notes" autocomplete="off">
-              </label>
             </section>
 
             <section class="card" aria-labelledby="auto-title">
               <h3 id="auto-title">Autonomous (20 seconds)</h3>
               <div class="counter-list">
-                <div class="counter" data-counter="autoFuelScored" data-max="99">
+                <div class="counter" data-counter="autoFuelScored" data-max="500">
                   <span>Auto Fuel Scored</span>
                   <button type="button" data-step="-1" aria-label="Decrease Auto Fuel Scored">−</button>
-                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Auto Fuel Scored">
+                  <input type="number" value="0" min="0" max="500" inputmode="numeric" aria-label="Auto Fuel Scored">
                   <button type="button" data-step="1" aria-label="Increase Auto Fuel Scored">+</button>
                 </div>
-                <div class="counter" data-counter="autoFuelMissed" data-max="99">
-                  <span>Auto Fuel Missed</span>
-                  <button type="button" data-step="-1" aria-label="Decrease Auto Fuel Missed">−</button>
-                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Auto Fuel Missed">
-                  <button type="button" data-step="1" aria-label="Increase Auto Fuel Missed">+</button>
-                </div>
-                <div class="counter" data-counter="autoTowerLevel1" data-max="1">
-                  <span>Auto Tower Level 1</span>
-                  <button type="button" data-step="-1" aria-label="Decrease Auto Tower Level 1">−</button>
-                  <input type="number" value="0" min="0" max="1" inputmode="numeric" aria-label="Auto Tower Level 1">
-                  <button type="button" data-step="1" aria-label="Increase Auto Tower Level 1">+</button>
-                </div>
               </div>
+
+              <fieldset>
+                <legend>Where Collected Fuel <small>Select all that apply</small></legend>
+                <div class="choice-grid">
+                  <label><input type="checkbox" name="autoCollectLoc" value="1"><span>Outpost</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc" value="2"><span>Depot</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc" value="3"><span>Neutral Zone</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc" value="4"><span>Neutral Zone — 2nd Pass</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc" value="5"><span>Did Not Move</span></label>
+                  <label><input type="checkbox" name="autoCollectLoc" value="6"><span>Moved Without Collecting</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Other Auto Actions <small>Select all that apply</small></legend>
+                <div class="choice-grid">
+                  <label><input type="checkbox" name="autoAdditionAct" value="1"><span>Passed</span></label>
+                  <label><input type="checkbox" name="autoAdditionAct" value="2"><span>Bump</span></label>
+                  <label><input type="checkbox" name="autoAdditionAct" value="3"><span>Trench</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Robot Stuck or A-Stop in Auto</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="autoStuck" value="false" checked><span>No</span></label>
+                  <label><input type="radio" name="autoStuck" value="true"><span>Yes</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Climbed in Auto</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="autoClimbed" value="No" checked><span>No Climb</span></label>
+                  <label><input type="radio" name="autoClimbed" value="C"><span>Climbed</span></label>
+                  <label><input type="radio" name="autoClimbed" value="F"><span>Failed Climb</span></label>
+                </div>
+              </fieldset>
             </section>
 
             <section class="card" aria-labelledby="teleop-title">
               <h3 id="teleop-title">Teleop (2:20)</h3>
               <div class="counter-list">
-                <div class="counter" data-counter="teleopFuelScored" data-max="99">
-                  <span>Teleop Fuel Scored (Active Hub)</span>
+                <div class="counter" data-counter="teleopFuelScored" data-max="500">
+                  <span>Teleop Fuel Scored</span>
                   <button type="button" data-step="-1" aria-label="Decrease Teleop Fuel Scored">−</button>
-                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Teleop Fuel Scored">
+                  <input type="number" value="0" min="0" max="500" inputmode="numeric" aria-label="Teleop Fuel Scored">
                   <button type="button" data-step="1" aria-label="Increase Teleop Fuel Scored">+</button>
                 </div>
-                <div class="counter" data-counter="teleopFuelMissed" data-max="99">
-                  <span>Teleop Fuel Missed</span>
-                  <button type="button" data-step="-1" aria-label="Decrease Teleop Fuel Missed">−</button>
-                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Teleop Fuel Missed">
-                  <button type="button" data-step="1" aria-label="Increase Teleop Fuel Missed">+</button>
-                </div>
-                <div class="counter" data-counter="teleopFuelInactive" data-max="99">
-                  <span>Teleop Fuel (Inactive Hub)</span>
-                  <button type="button" data-step="-1" aria-label="Decrease Teleop Fuel Inactive Hub">−</button>
-                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Teleop Fuel Inactive Hub">
-                  <button type="button" data-step="1" aria-label="Increase Teleop Fuel Inactive Hub">+</button>
-                </div>
-                <div class="counter" data-counter="fouls" data-max="99">
-                  <span>Fouls</span>
-                  <button type="button" data-step="-1" aria-label="Decrease Fouls">−</button>
-                  <input type="number" value="0" min="0" max="99" inputmode="numeric" aria-label="Fouls">
-                  <button type="button" data-step="1" aria-label="Increase Fouls">+</button>
-                </div>
-                <div class="counter" data-counter="defenseRating" data-max="5">
-                  <span>Defense Rating</span>
-                  <button type="button" data-step="-1" aria-label="Decrease Defense Rating">−</button>
-                  <input type="number" value="0" min="0" max="5" inputmode="numeric" aria-label="Defense Rating">
-                  <button type="button" data-step="1" aria-label="Increase Defense Rating">+</button>
+                <div class="counter" data-counter="fuelFed" data-max="500">
+                  <span>Fuel Fed (Herded &amp; Passed)</span>
+                  <button type="button" data-step="-1" aria-label="Decrease Fuel Fed">−</button>
+                  <input type="number" value="0" min="0" max="500" inputmode="numeric" aria-label="Fuel Fed">
+                  <button type="button" data-step="1" aria-label="Increase Fuel Fed">+</button>
                 </div>
               </div>
+
+              <fieldset>
+                <legend>Bump / Trench <small>Select all that apply</small></legend>
+                <div class="choice-grid">
+                  <label><input type="checkbox" name="teleBumpTrench" value="1"><span>Bump</span></label>
+                  <label><input type="checkbox" name="teleBumpTrench" value="2"><span>Trench</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Defended by Opponent</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="robotDefended" value="false" checked><span>No</span></label>
+                  <label><input type="radio" name="robotDefended" value="true"><span>Yes</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Opposing Zone Actions <small>Select all that apply</small></legend>
+                <div class="choice-grid">
+                  <label><input type="checkbox" name="teleOpposingActs" value="1"><span>Collecting</span></label>
+                  <label><input type="checkbox" name="teleOpposingActs" value="2"><span>Defense</span></label>
+                </div>
+              </fieldset>
             </section>
 
             <section class="card" aria-labelledby="endgame-title">
-              <h3 id="endgame-title">Endgame &amp; Notes</h3>
+              <h3 id="endgame-title">Endgame &amp; Robot Health</h3>
               <fieldset>
-                <legend>Tower Level (endgame)</legend>
-                <div class="segmented segmented-four">
-                  <label><input type="radio" name="towerLevel" value="None" checked><span>None</span></label>
-                  <label><input type="radio" name="towerLevel" value="Level 1"><span>Level 1</span></label>
-                  <label><input type="radio" name="towerLevel" value="Level 2"><span>Level 2</span></label>
-                  <label><input type="radio" name="towerLevel" value="Level 3"><span>Level 3</span></label>
+                <legend>Climbed</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="climbed" value="No" checked><span>No Climb</span></label>
+                  <label><input type="radio" name="climbed" value="L1"><span>Level 1</span></label>
+                  <label><input type="radio" name="climbed" value="L2"><span>Level 2</span></label>
+                  <label><input type="radio" name="climbed" value="L3"><span>Level 3</span></label>
+                  <label><input type="radio" name="climbed" value="F"><span>Failed Climb</span></label>
                 </div>
               </fieldset>
-              <label>
-                <span class="sr-only">Comments</span>
+
+              <div class="health-grid">
+                <fieldset>
+                  <legend>Mechanical Issue</legend>
+                  <div class="choice-grid"><label><input type="radio" name="mechIssue" value="false" checked><span>No</span></label><label><input type="radio" name="mechIssue" value="true"><span>Yes</span></label></div>
+                </fieldset>
+                <fieldset>
+                  <legend>Died</legend>
+                  <div class="choice-grid"><label><input type="radio" name="died" value="false" checked><span>No</span></label><label><input type="radio" name="died" value="true"><span>Yes</span></label></div>
+                </fieldset>
+                <fieldset>
+                  <legend>Tipped / Fell Over</legend>
+                  <div class="choice-grid"><label><input type="radio" name="tipped" value="false" checked><span>No</span></label><label><input type="radio" name="tipped" value="true"><span>Yes</span></label></div>
+                </fieldset>
+              </div>
+            </section>
+
+            <section class="card" aria-labelledby="postmatch-title">
+              <h3 id="postmatch-title">Postmatch Ratings</h3>
+              <div class="counter-list">
+                <div class="counter" data-counter="scoringEff" data-max="5">
+                  <span>Scoring Effectiveness (0–5)</span><button type="button" data-step="-1" aria-label="Decrease Scoring Effectiveness">−</button><input type="number" value="0" min="0" max="5" inputmode="numeric" aria-label="Scoring Effectiveness"><button type="button" data-step="1" aria-label="Increase Scoring Effectiveness">+</button>
+                </div>
+                <div class="counter" data-counter="feedingSkill" data-max="5">
+                  <span>Feeding / Passing Skill (0–5)</span><button type="button" data-step="-1" aria-label="Decrease Feeding Skill">−</button><input type="number" value="0" min="0" max="5" inputmode="numeric" aria-label="Feeding Skill"><button type="button" data-step="1" aria-label="Increase Feeding Skill">+</button>
+                </div>
+                <div class="counter" data-counter="defSkill" data-max="5">
+                  <span>Defense Skill (0–5)</span><button type="button" data-step="-1" aria-label="Decrease Defense Skill">−</button><input type="number" value="0" min="0" max="5" inputmode="numeric" aria-label="Defense Skill"><button type="button" data-step="1" aria-label="Increase Defense Skill">+</button>
+                </div>
+              </div>
+
+              <fieldset>
+                <legend>Scored How?</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="scoredHow" value="driving"><span>While Driving</span></label><label><input type="radio" name="scoredHow" value="stationary"><span>While Stationary</span></label><label><input type="radio" name="scoredHow" value="both"><span>Both</span></label><label><input type="radio" name="scoredHow" value="none"><span>No Scoring</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Scoring Location <small>Select all that apply</small></legend>
+                <div class="choice-grid">
+                  <label><input type="checkbox" name="teleScoreLoc" value="1"><span>Outpost Trench</span></label><label><input type="checkbox" name="teleScoreLoc" value="2"><span>Outpost</span></label><label><input type="checkbox" name="teleScoreLoc" value="3"><span>Hub</span></label><label><input type="checkbox" name="teleScoreLoc" value="4"><span>Ladder</span></label><label><input type="checkbox" name="teleScoreLoc" value="5"><span>Depot</span></label><label><input type="checkbox" name="teleScoreLoc" value="6"><span>Depot Trench</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Passed How?</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="passedHow" value="driving"><span>While Driving</span></label><label><input type="radio" name="passedHow" value="stationary"><span>While Stationary</span></label><label><input type="radio" name="passedHow" value="both"><span>Both</span></label><label><input type="radio" name="passedHow" value="none"><span>No Passing</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Yellow / Red Card</legend>
+                <div class="choice-grid">
+                  <label><input type="radio" name="yc" value="No Card" checked><span>No Card</span></label><label><input type="radio" name="yc" value="Yellow"><span>Yellow Card</span></label><label><input type="radio" name="yc" value="Red"><span>Red Card</span></label>
+                </div>
+              </fieldset>
+
+              <div class="health-grid">
+                <fieldset>
+                  <legend>First Pick (Scoring)</legend>
+                  <div class="choice-grid"><label><input type="radio" name="firstPick" value="Yes"><span>Yes</span></label><label><input type="radio" name="firstPick" value="May"><span>Maybe</span></label><label><input type="radio" name="firstPick" value="No"><span>No</span></label></div>
+                </fieldset>
+                <fieldset>
+                  <legend>Second Pick (Passing / Defense)</legend>
+                  <div class="choice-grid"><label><input type="radio" name="secondPick" value="Yes"><span>Yes</span></label><label><input type="radio" name="secondPick" value="May"><span>Maybe</span></label><label><input type="radio" name="secondPick" value="No"><span>No</span></label></div>
+                </fieldset>
+              </div>
+
+              <label class="field-label">
+                <span>Comments</span>
                 <textarea id="comments" name="comments" aria-label="Comments" placeholder="Comments"></textarea>
               </label>
             </section>
 
             <section class="card" aria-labelledby="output-title">
               <h3 id="output-title">QR Output</h3>
+              <p class="payload-meta"><strong>29 spreadsheet fields</strong> • tab-separated for one-cell-per-value scanning</p>
               <div class="qr-panel">
                 <div id="qr-code" aria-label="Scouting QR code"></div>
               </div>

@@ -1,21 +1,36 @@
 const columns = [
-  "scout",
-  "match",
-  "team",
-  "alliance",
-  "station",
-  "robotNotes",
-  "autoFuelScored",
-  "autoFuelMissed",
-  "autoTowerLevel1",
-  "teleopFuelScored",
-  "teleopFuelMissed",
-  "teleopFuelInactive",
-  "fouls",
-  "defenseRating",
-  "towerLevel",
-  "comments",
+  "Scouter Initials",
+  "Match Number",
+  "Team Number",
+  "Starting Position",
+  "No Show",
+  "Fuel Scored",
+  "Where collected Fuel",
+  "Other Auto actions",
+  "Robot Stuck or a Stop in Auto",
+  "Climbed",
+  "Fuel Scored",
+  "Bump Trench",
+  "Deffended by Opponent",
+  "Fuel Fed",
+  "Opposing Zone Actions",
+  "Climbed",
+  "Mechanical Issue",
+  "Died",
+  "Triped/Fell Over",
+  "Scoring Efectiveness",
+  "Scored How?",
+  "Scoring Location",
+  "Feeding/Passing Skill",
+  "Passed How?",
+  "Defense Skill",
+  "Yello/Red Card",
+  "First Pick",
+  "Second Pick",
+  "Comments",
 ];
+
+const delimiter = "\t";
 
 const form = document.querySelector("#scouting-form");
 const payloadOutput = document.querySelector("#payload");
@@ -27,13 +42,20 @@ let qrCode;
 
 function sanitize(value) {
   return String(value ?? "")
-    .replaceAll(",", " ")
+    .replaceAll("\t", " ")
     .replaceAll("\n", " ")
+    .replaceAll("\r", " ")
     .trim();
 }
 
 function selectedValue(name) {
   return form.elements[name].value;
+}
+
+function selectedValues(name) {
+  return [...form.querySelectorAll(`input[name="${name}"]:checked`)]
+    .map((input) => input.value)
+    .join(",");
 }
 
 function boundedCounterValue(counter) {
@@ -51,21 +73,34 @@ function values() {
   );
 
   return [
-    sanitize(form.elements.scout.value),
-    sanitize(form.elements.match.value),
-    sanitize(form.elements.team.value),
-    selectedValue("alliance"),
-    selectedValue("station"),
-    sanitize(form.elements.robotNotes.value),
+    sanitize(form.elements.scouter.value),
+    sanitize(form.elements.matchNumber.value),
+    sanitize(form.elements.teamNumber.value),
+    selectedValue("startPos"),
+    selectedValue("noShow"),
     counters.autoFuelScored,
-    counters.autoFuelMissed,
-    counters.autoTowerLevel1,
+    selectedValues("autoCollectLoc"),
+    selectedValues("autoAdditionAct"),
+    selectedValue("autoStuck"),
+    selectedValue("autoClimbed"),
     counters.teleopFuelScored,
-    counters.teleopFuelMissed,
-    counters.teleopFuelInactive,
-    counters.fouls,
-    counters.defenseRating,
-    selectedValue("towerLevel"),
+    selectedValues("teleBumpTrench"),
+    selectedValue("robotDefended"),
+    counters.fuelFed,
+    selectedValues("teleOpposingActs"),
+    selectedValue("climbed"),
+    selectedValue("mechIssue"),
+    selectedValue("died"),
+    selectedValue("tipped"),
+    counters.scoringEff,
+    selectedValue("scoredHow"),
+    selectedValues("teleScoreLoc"),
+    counters.feedingSkill,
+    selectedValue("passedHow"),
+    counters.defSkill,
+    selectedValue("yc"),
+    selectedValue("firstPick"),
+    selectedValue("secondPick"),
     sanitize(form.elements.comments.value),
   ];
 }
@@ -139,7 +174,11 @@ function renderQR(payload) {
 }
 
 function updateOutput() {
-  const payload = values().join(",");
+  const payloadValues = values();
+  if (payloadValues.length !== columns.length) {
+    throw new Error(`Payload has ${payloadValues.length} values; expected ${columns.length}.`);
+  }
+  const payload = payloadValues.join(delimiter);
   payloadOutput.textContent = payload;
   renderQR(payload);
 }
@@ -186,15 +225,13 @@ form.addEventListener("change", updateOutput);
 form.addEventListener("submit", (event) => event.preventDefault());
 
 document.querySelector("#reset-button").addEventListener("click", () => {
-  const currentMatch = form.elements.match.value.trim();
+  const currentMatch = form.elements.matchNumber.value.trim();
   const nextMatch = /^\d+$/.test(currentMatch) ? String(Number(currentMatch) + 1) : "";
-  const currentScout = form.elements.scout.value;
-  const currentAlliance = selectedValue("alliance");
+  const currentScouter = form.elements.scouter.value;
 
   form.reset();
-  form.elements.scout.value = currentScout;
-  form.elements.match.value = nextMatch;
-  form.elements.alliance.value = currentAlliance;
+  form.elements.scouter.value = currentScouter;
+  form.elements.matchNumber.value = nextMatch;
   counterElements.forEach((counter) => {
     counter.querySelector("input").value = "0";
   });
@@ -217,7 +254,7 @@ document.querySelector("#copy-payload").addEventListener("click", () => {
 });
 
 document.querySelector("#copy-columns").addEventListener("click", () => {
-  copyText(columns.join(","), "Column names copied to the clipboard.");
+  copyText(columns.join(delimiter), "Column names copied to the clipboard.");
 });
 
 updateOutput();

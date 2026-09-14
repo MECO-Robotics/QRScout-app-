@@ -289,10 +289,20 @@ footer {
 }
 
 .field-row,
+.health-grid,
 .output-actions {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+}
+
+.field-label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  color: #151b26;
+  font-size: 0.94rem;
+  font-weight: 650;
 }
 
 input[type="text"],
@@ -330,6 +340,61 @@ legend {
   color: #151b26;
   font-size: 0.94rem;
   font-weight: 650;
+}
+
+legend small {
+  margin-left: 5px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.choice-grid label {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.choice-grid label:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.choice-grid input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-grid span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 7px 10px;
+  border: 1px solid var(--red);
+  border-radius: 9px;
+  color: var(--navy);
+  background: var(--white);
+  font-size: 0.82rem;
+  font-weight: 650;
+  text-align: center;
+  transition: color 120ms ease, background 120ms ease;
+}
+
+.choice-grid input:checked + span {
+  color: var(--white);
+  background: var(--red);
+}
+
+.choice-grid input:focus-visible + span {
+  outline: 3px solid rgb(224 20 31 / 28%);
+  outline-offset: 2px;
 }
 
 .segmented {
@@ -474,6 +539,16 @@ textarea {
   border: 1px solid var(--border);
   border-radius: 14px;
   background: var(--white);
+}
+
+.payload-meta {
+  margin: -2px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.payload-meta strong {
+  color: var(--navy);
 }
 
 #qr-code {
@@ -644,6 +719,10 @@ dialog button {
   }
 
   .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .health-grid {
     grid-template-columns: 1fr;
   }
 
